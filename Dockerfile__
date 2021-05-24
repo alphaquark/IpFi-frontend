@@ -1,0 +1,12 @@
+FROM node:12.13.1 AS builder
+
+ENV user node
+
+COPY . /home/$user/
+WORKDIR /home/$user
+RUN chown $user --recursive .
+
+RUN yarn install
+
+EXPOSE 80 443
+CMD ["yarn","server"]
